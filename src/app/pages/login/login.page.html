@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title | titlecase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form *ngIf="title === 'login'">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" required></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="dark" expand="block" (click)="signIn()">Sign In</ion-button>
+        <p>
+          <small>
+            <a (click)="registerForm()" class="small-text">Register for an Account</a>
+          </small>
+        </p>
+      </ion-col>
+    </ion-row>
+  </form>
+
+
+
+  <form *ngIf="title === 'register'">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="fixed">Password</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="dark" expand="block" (click)="register()">Register</ion-button>
+        <p>
+          <small>
+            <a (click)="title = 'login'" class="small-text">Back to Login</a>
+          </small>
+        </p>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

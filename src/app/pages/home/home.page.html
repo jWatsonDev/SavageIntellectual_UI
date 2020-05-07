@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Daily Disciplines</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div id="container">
+
+    <ion-list>
+      <ion-item *ngFor="let entry of form">
+        <ion-label [class.line-through]="entry.isChecked">{{entry.val}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+ </div>
+
+</ion-content>
