@@ -8,25 +8,49 @@ import { User } from '../models/user';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
+    // public currentUser: Observable<User>;
+
+    private _currentUser;
+    public get currentUser() {
+        return this._currentUser;
+    }
+    public set currentUser(value) {
+        this._currentUser = value;
+    }
+    
 
     constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+        console.log('currentUser', this.currentUser)
+        // this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        // this.currentUser = this.currentUserSubject.asObservable();
     }
 
-    public get currentUserValue(): User {
-        return this.currentUserSubject.value;
-    }
+    // public get currentUserValue(): User {
+    //     return this.currentUserSubject.value;
+    // }
 
-    login(username, password) {
-        return this.http.post<any>(`/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
-            }));
+    // login(username, password) {
+    //     return this.http.post<any>(`/users/authenticate`, { username, password })
+    //         .pipe(map(user => {
+    //             // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //             localStorage.setItem('currentUser', JSON.stringify(user));
+    //             this.currentUserSubject.next(user);
+    //             return user;
+    //         }));
+    // }
+    
+
+    login(loginForm) {
+        return this.http.post<any>(`http://localhost:1234/authenticate`, loginForm)
+            // .pipe(map(user => {
+            //     console.log(user)
+            //     // store user details and jwt token in local storage to keep user logged in between page refreshes
+            //     localStorage.setItem('currentUser', JSON.stringify(loginForm.username));
+            //     this.currentUserSubject.next(loginForm.username);
+            //     console.log(user)
+            //     return loginForm.username;
+            // }));
     }
 
     register(user: User) {
@@ -43,6 +67,7 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+        this.currentUser = null;
+        //this.currentUserSubject.next(null);
     }
 }

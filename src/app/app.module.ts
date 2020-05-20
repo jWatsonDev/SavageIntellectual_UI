@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.inceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { fakeBackendProvider } from './helpers/fake-backend';
     HttpModule,
     HttpClientModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
     StatusBar,
@@ -31,7 +33,7 @@ import { fakeBackendProvider } from './helpers/fake-backend';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend
-    fakeBackendProvider,
+    // fakeBackendProvider,
     // ionic boilerplate
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

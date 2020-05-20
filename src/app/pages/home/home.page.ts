@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,16 @@ export class HomePage implements OnInit {
     { val: 'Read 10 pages', isChecked: false }
   ];
 
-  constructor() { }
+  constructor(private _dataService: DataService) { }
 
   ngOnInit() {
+    this.getDisciplinesByUsername();
+  }
+
+  getDisciplinesByUsername() {
+    this._dataService.getDisciplinesByUsername().subscribe(res => {
+      console.log(res);
+    });
   }
 
 }

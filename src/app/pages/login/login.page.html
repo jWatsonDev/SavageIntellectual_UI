@@ -5,20 +5,20 @@
 </ion-header>
 
 <ion-content>
-  <form *ngIf="title === 'login'">
+  <form *ngIf="title === 'login'" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="text" required></ion-input>
+        <ion-input type="text" required formControlName="username"></ion-input>
       </ion-item>
   
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="password"></ion-input>
       </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="dark" expand="block" (click)="signIn()">Sign In</ion-button>
+        <ion-button type="submit" color="dark" expand="block">Sign In</ion-button>
         <p>
           <small>
             <a (click)="registerForm()" class="small-text">Register for an Account</a>

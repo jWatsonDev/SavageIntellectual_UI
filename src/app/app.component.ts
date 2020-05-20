@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Add Discipline',
-      url: 'add-discipline',
+      url: '/add-discipline',
       icon: 'add-circle'
     },
     {
@@ -67,8 +67,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUser = this._authService.currentUserValue;
-    this.loggedIn = (this.currentUser && this.currentUser.id) ? true : false;
+    this.currentUser = this._authService.currentUser;
+    this.loggedIn = (this.currentUser) ? true : false;
 
     const path = window.location.pathname.split('folder/')[1];
 
@@ -77,15 +77,22 @@ export class AppComponent implements OnInit {
     }
 
     this._router.events.subscribe(e => {
-      this.currentUser = this._authService.currentUserValue;
-      this.loggedIn = (this.currentUser && this.currentUser.id) ? true : false;
+      this.currentUser = this._authService.currentUser;
+      this.loggedIn = (this.currentUser) ? true : false;
       // ensures active link is set to home after logging back in
       // TODO: should implement differently
-      if (this.loggedIn && e['routerEvent'] && e['routerEvent']['url'] === '/home') {
-        this.selectedIndex = 0;
+      // if (this.loggedIn && e['routerEvent'] && e['routerEvent']['url'] === '/home') {
+      //   this.selectedIndex = 0;
+      // }
+      if (this.loggedIn && e['routerEvent']) {
+        this.routeUrl = e['routerEvent']['url']
+        console.log(this.routeUrl)
       }
     });
   }
+
+  routeUrl;
+
 
   menuClicked(appPage, idx) {
     this.selectedIndex = idx;
