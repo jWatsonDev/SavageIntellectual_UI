@@ -49,7 +49,10 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this._authService.login(this.loginForm.value).subscribe(res => {
       if (res.token) {
-        this._authService.currentUser = this.loginForm.value.username;
+        this._authService.currentUser = {
+          username: this.loginForm.value.username,
+          token: res.token
+        };
         this._router.navigate(['/home']);
         localStorage.setItem('currentUser', JSON.stringify({
           username: this.loginForm.value.username,

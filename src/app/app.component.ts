@@ -42,10 +42,10 @@ export class AppComponent implements OnInit {
       method: 'logout'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  public currentUser: User;
-  public loggedIn: boolean;
+  currentUser: User;
+  loggedIn: boolean;
+  routeUrl: string;
 
   constructor(
     private platform: Platform,
@@ -86,13 +86,10 @@ export class AppComponent implements OnInit {
       // }
       if (this.loggedIn && e['routerEvent']) {
         this.routeUrl = e['routerEvent']['url']
-        console.log(this.routeUrl)
+        // console.log(this.routeUrl)
       }
     });
   }
-
-  routeUrl;
-
 
   menuClicked(appPage, idx) {
     this.selectedIndex = idx;
