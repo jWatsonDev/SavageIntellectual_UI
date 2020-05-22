@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Disciplines</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+
+    <ion-list>
+      <ion-item *ngFor="let discipline of disciplines">
+        <ion-label>{{discipline.name}}</ion-label>
+        <!-- <p><small>{{discipline.description}}</small></p> -->
+        <ion-button color="danger" (click)="delete(discipline)">Delete</ion-button>
+        <ion-button color="secondary" (click)="edit(discipline)">Edit</ion-button>
+        <ion-button (click)="create()">Create</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

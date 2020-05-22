@@ -14,6 +14,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'edit-disciplines',
+    loadChildren: () => import('./pages/edit-disciplines/edit-disciplines.module').then( m => m.EditDisciplinesPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'purpose',
     loadChildren: () => import('./pages/purpose/purpose.module').then( m => m.PurposePageModule),
     canActivate: [AuthGuard]
@@ -23,11 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/progress/progress.module').then( m => m.ProgressPageModule),
     canActivate: [AuthGuard]
   },
-  // {
-  //   path: 'folder/:id',
-  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule),
-  //   canActivate: [AuthGuard]
-  // },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -42,7 +42,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'home'
   }
-
 ];
 
 @NgModule({

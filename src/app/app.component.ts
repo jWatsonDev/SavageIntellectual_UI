@@ -26,6 +26,11 @@ export class AppComponent implements OnInit {
       icon: 'add-circle'
     },
     {
+      title: 'Edit Disciplines',
+      url: '/edit-disciplines',
+      icon: 'hammer'
+    },
+    {
       title: 'Purpose',
       url: '/purpose',
       icon: 'information-circle'
