@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { Discipline } from '../models/discipline';
 import { Status } from '../models/status';
+import { forkJoin, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,26 @@ export class DataService {
 
   getStatusesByUsernameAndDate(date) {
     return this._http.get<any>(`http://localhost:1234/statuses/users/${this._authService.currentUser.username}/date/${date}`);
+  }
+
+  getProgressByUsernameAndDisciplineId(disciplineId) {
+    console.log(disciplineId);
+    return this._http.get<any>(`http://localhost:1234/progresses/users/${this._authService.currentUser.username}/disciplineId/${disciplineId}`);
+  }
+
+  /**
+     * Calls TODO
+     * @param assets: will return observable data
+     */
+  getProgresses(disciplines: Array<Discipline>): Observable<any> {
+    let observableBatch = [];
+    disciplines.forEach((d: Discipline) => {
+      const url = `http://localhost:1234/progresses/users/${this._authService.currentUser.username}/disciplineId/${d.id}`
+
+      //console.log(url);
+      observableBatch.push(this._http.get(url))
+    });
+
+    return forkJoin(observableBatch);
   }
 }

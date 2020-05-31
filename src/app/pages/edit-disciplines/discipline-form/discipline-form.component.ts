@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { Discipline } from 'src/app/models/discipline';
+import { CATEGORY_LIST } from 'src/app/helpers/config/category';
 
 @Component({
   selector: 'app-discipline-form',
@@ -11,10 +12,12 @@ import { Discipline } from 'src/app/models/discipline';
 export class DisciplineFormComponent implements OnInit {
 
   @Input() discipline: Discipline;
+  categories = CATEGORY_LIST;
 
   disciplineForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
+    category: new FormControl('')
   });
 
   constructor(

@@ -1,28 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Add Discipline</ion-title>
+    <ion-title>Discipline</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="disciplineForm" (ngSubmit)="onSubmit()">
-      <ion-item>
-        <ion-label position="floating">Habit</ion-label>
-        <ion-input type="text" required formControlName="name"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Description</ion-label>
-        <ion-input formControlName="description"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Discipline</ion-label>
+      <ion-input type="text" required formControlName="name"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input formControlName="description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Category</ion-label>
+      <ion-select formControlName="category">
+        <ion-select-option *ngFor="let c of categories" [value]="c.name">{{ c.name | titlecase }}</ion-select-option>
+      </ion-select>
+    </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="dark" expand="block">Create Habit</ion-button>
+        <ion-button type="submit" color="success" style="float: right; position: relative; top: 10px;">Save</ion-button>
       </ion-col>
     </ion-row>
   </form>
-  </ion-content>
+</ion-content>

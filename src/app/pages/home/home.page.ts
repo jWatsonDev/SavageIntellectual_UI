@@ -42,17 +42,21 @@ export class HomePage implements OnInit {
       // console.log('status', status, discipline.id)
       if (status) {
         status.name = discipline.name;
+        status.category = discipline.category;
       } else {
         status = {
           name: discipline.name,
           disciplineId: discipline.id,
           complete: false,
           date: new Date(),
-          username: discipline.username
+          username: discipline.username,
+          category: discipline.category
         };
       }
       this.statusDisciplines.push(status);
     });
+
+    console.log(this.statusDisciplines)
   }
 
   valueChanged(discipline) {

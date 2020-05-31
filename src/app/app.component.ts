@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './services/authentication.service';
 import { User } from './models/user';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MENU } from './helpers/config/menu';
 
 @Component({
   selector: 'app-root',
@@ -14,40 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Daily Discplines',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Add Discipline',
-      url: '/add-discipline',
-      icon: 'add-circle'
-    },
-    {
-      title: 'Edit Disciplines',
-      url: '/edit-disciplines',
-      icon: 'hammer'
-    },
-    {
-      title: 'Purpose',
-      url: '/purpose',
-      icon: 'information-circle'
-    },
-    {
-      title: 'Progress',
-      url: '/progress',
-      icon: 'speedometer'
-    },
-    {
-      title: 'Logout',
-      url: '/',
-      icon: 'log-out',
-      method: 'logout'
-    }
-  ];
-
+  public appPages = MENU;
   currentUser: User;
   loggedIn: boolean;
   routeUrl: string;

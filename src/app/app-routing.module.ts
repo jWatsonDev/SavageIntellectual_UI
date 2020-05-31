@@ -9,13 +9,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'add-discipline',
-    loadChildren: () => import('./pages/add-discipline/add-discipline.module').then( m => m.AddDisciplinePageModule),
+    path: 'edit-disciplines',
+    loadChildren: () => import('./pages/edit-disciplines/edit-disciplines.module').then( m => m.EditDisciplinesPageModule),
     canActivate: [AuthGuard]
   },
   {
-    path: 'edit-disciplines',
-    loadChildren: () => import('./pages/edit-disciplines/edit-disciplines.module').then( m => m.EditDisciplinesPageModule),
+    path: 'history',
+    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule),
     canActivate: [AuthGuard]
   },
   {

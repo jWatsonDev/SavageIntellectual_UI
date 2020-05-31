@@ -1,0 +1,18 @@
+<h3>{{ data[0].disciplineName }}</h3>
+<div class="progress-wrapper">
+  <div class="inner-progress-wrapper">
+    <table>
+      <tr>
+        <td *ngFor="let p of data">
+          <div class="progress-circle" (click)="viewDetails(p)">
+            <ion-icon *ngIf="p.status" name="checkmark" class="check"></ion-icon>
+            <ion-icon *ngIf="!p.status" name="close" class="x"></ion-icon>
+            <span class="date">
+              {{ p.statusDate | date: 'MMM dd' }}
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

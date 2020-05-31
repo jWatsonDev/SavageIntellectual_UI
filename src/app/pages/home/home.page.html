@@ -12,8 +12,15 @@
   <div id="container">
 
     <ion-list>
-      <ion-item *ngFor="let discipline of statusDisciplines">
-        <ion-label [class.line-through]="discipline.complete">{{discipline.name}}</ion-label>
+      <ion-item *ngFor="let discipline of statusDisciplines" [class.done]="discipline.complete">
+        <ion-icon *ngIf="discipline.category === 'relational'" name="people-outline"></ion-icon>
+        <ion-icon *ngIf="discipline.category === 'personal'" name="person-outline"></ion-icon>
+        <ion-icon *ngIf="discipline.category === 'physical'" name="barbell-outline"></ion-icon>
+        <ion-icon *ngIf="discipline.category === 'professional'" name="briefcase-outline"></ion-icon>
+        &nbsp;
+        <ion-label [class.line-through]="discipline.complete">
+          {{ discipline.name | uppercase }}
+        </ion-label>
         <ion-checkbox [(ngModel)]="discipline.complete" (ngModelChange)="valueChanged(discipline)"></ion-checkbox>
       </ion-item>
     </ion-list>

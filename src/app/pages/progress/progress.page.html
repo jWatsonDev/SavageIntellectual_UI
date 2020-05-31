@@ -8,5 +8,9 @@
 </ion-header>
 
 <ion-content>
-
+  <div *ngIf="progresses" style="width: 90%; margin: auto;">
+    <div *ngFor="let p of progresses">
+      <app-progress-scroll *ngIf="p" [data]="p" (selectDiscipline)="selectDiscipline($event)"></app-progress-scroll>
+    </div>
+  </div>
 </ion-content>

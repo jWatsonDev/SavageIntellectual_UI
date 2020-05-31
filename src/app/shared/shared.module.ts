@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { DisciplineFormComponent } from '../pages/edit-disciplines/discipline-form/discipline-form.component';
+import { ProgressComponent } from './components/progress/progress.component';
 
 
 @NgModule({
@@ -14,14 +15,16 @@ import { DisciplineFormComponent } from '../pages/edit-disciplines/discipline-fo
         ReactiveFormsModule
     ],
     declarations: [
-        DisciplineFormComponent
+        DisciplineFormComponent,
+        ProgressComponent
     ],
     exports: [
         CommonModule,
         FormsModule,
         IonicModule,
         ReactiveFormsModule,
-        DisciplineFormComponent
+        DisciplineFormComponent,
+        ProgressComponent
     ],
     entryComponents: [
         DisciplineFormComponent

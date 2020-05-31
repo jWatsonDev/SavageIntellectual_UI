@@ -29,7 +29,8 @@ export class EditDisciplinesPage implements OnInit {
       component: DisciplineFormComponent,
       componentProps: {
         'discipline': discipline,
-      }
+      },
+      cssClass: 'custom-modal'
     });
     modal.present();
 
@@ -46,7 +47,8 @@ export class EditDisciplinesPage implements OnInit {
       component: DisciplineFormComponent,
       componentProps: {
         'discipline': null,
-      }
+      },
+      cssClass: 'custom-modal'
     });
     modal.present();
 
