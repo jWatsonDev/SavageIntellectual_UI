@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { Discipline } from 'src/app/models/discipline';
 import { CATEGORY_LIST } from 'src/app/helpers/config/category';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-discipline-form',
@@ -15,13 +16,14 @@ export class DisciplineFormComponent implements OnInit {
   categories = CATEGORY_LIST;
 
   disciplineForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl([], Validators.required),
     description: new FormControl(''),
-    category: new FormControl('')
+    category: new FormControl([], [Validators.required])
   });
 
   constructor(
-    private _dataService: DataService
+    private _dataService: DataService,
+    private _modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -29,7 +31,6 @@ export class DisciplineFormComponent implements OnInit {
       console.log('discipline form', this.discipline);
       this.disciplineForm.patchValue(this.discipline);
     }
-
   }
 
   onSubmit() {
@@ -46,5 +47,9 @@ export class DisciplineFormComponent implements OnInit {
     this._dataService.createDiscipline(this.discipline).subscribe(res => {
       console.log(res);
     });
+  }
+
+  cancel() {
+    this._modalController.dismiss();
   }
 }

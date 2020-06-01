@@ -7,23 +7,25 @@
 <ion-content>
   <form [formGroup]="disciplineForm" (ngSubmit)="onSubmit()">
     <ion-item>
-      <ion-label position="floating">Discipline</ion-label>
+      <ion-label position="fixed">Discipline</ion-label>
       <ion-input type="text" required formControlName="name"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Description</ion-label>
+      <ion-label position="fixed">Description</ion-label>
       <ion-input formControlName="description"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="floating">Category</ion-label>
+      <ion-label position="fixed">Category</ion-label>
       <ion-select formControlName="category">
         <ion-select-option *ngFor="let c of categories" [value]="c.name">{{ c.name | titlecase }}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="success" style="float: right; position: relative; top: 10px;">Save</ion-button>
+        <ion-button type="submit" color="success" [disabled]="disciplineForm.invalid">Save</ion-button>
+        <ion-button (click)="cancel()">Cancel</ion-button>
       </ion-col>
     </ion-row>
   </form>

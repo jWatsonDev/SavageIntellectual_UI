@@ -51,12 +51,12 @@
     font-size: 20px;
 }
 
-.progress-wrapper::-webkit-scrollbar {
+.inner-progress-wrapper::-webkit-scrollbar {
 	width: 7px;
 	background: var(--ion-color-step-50);
 }
 
-.progress-wrapper::-webkit-scrollbar-thumb {
+.inner-progress-wrapper::-webkit-scrollbar-thumb {
 	background: var(--ion-color-step-50);
 }
 
