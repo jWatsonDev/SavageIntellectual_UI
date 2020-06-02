@@ -5,16 +5,16 @@
 </ion-header>
 
 <ion-content>
-  <form *ngIf="title === 'login'" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="text" required formControlName="username"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Password</ion-label>
-        <ion-input formControlName="password"></ion-input>
-      </ion-item>
+  <form *ngIf="title === 'login'" [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()">
+    <ion-item>
+      <ion-label position="fixed">Email</ion-label>
+      <ion-input type="text" required formControlName="username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="fixed">Password</ion-label>
+      <ion-input formControlName="password"></ion-input>
+    </ion-item>
 
     <ion-row>
       <ion-col>
@@ -24,6 +24,7 @@
             <a (click)="registerForm()" class="small-text">Register for an Account</a>
           </small>
         </p>
+        <p *ngIf="loginError" style="color: red; text-align: center;">Incorrect username or password. Contact support for assistance.</p>
       </ion-col>
     </ion-row>
   </form>

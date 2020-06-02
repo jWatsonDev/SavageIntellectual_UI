@@ -12,6 +12,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class LoginPage implements OnInit {
 
   public title = 'login';
+  loginError: boolean;
+
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -49,6 +51,7 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this._authService.login(this.loginForm.value).subscribe(res => {
       if (res.token) {
+        this.loginError = false;
         this._authService.currentUser = {
           username: this.loginForm.value.username,
           token: res.token
@@ -59,7 +62,8 @@ export class LoginPage implements OnInit {
           token: res.token
         }));
       }
+    }, error => {
+      this.loginError = true;
     });
-    console.warn(this.loginForm.value);
   }
 }
