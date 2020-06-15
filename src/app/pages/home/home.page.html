@@ -11,7 +11,7 @@
 
   <div id="container">
 
-    <ion-list>
+    <ion-list *ngIf="statusDisciplines && statusDisciplines.length; else noDisciplines">
       <ion-item *ngFor="let discipline of statusDisciplines" [class.done]="discipline.complete">
         <ion-icon *ngIf="discipline.category === 'relational'" name="people-outline"></ion-icon>
         <ion-icon *ngIf="discipline.category === 'personal'" name="person-outline"></ion-icon>
@@ -24,5 +24,10 @@
         <ion-checkbox [(ngModel)]="discipline.complete" (ngModelChange)="valueChanged(discipline)"></ion-checkbox>
       </ion-item>
     </ion-list>
+
+    <ng-template #noDisciplines>
+      <p style="padding-left: 10px;">You don't have any disciplines. Add some.</p>
+    </ng-template>
+    
   </div>
 </ion-content>

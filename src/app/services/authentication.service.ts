@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '../models/user';
+import { API_ENDPOINT } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -24,11 +25,11 @@ export class AuthenticationService {
 
 
     login(loginForm) {
-        return this.http.post<any>(`http://localhost:1234/authenticate`, loginForm)
+        return this.http.post<any>(`${API_ENDPOINT}/authenticate`, loginForm)
     }
 
     register(user: User) {
-        return this.http.post<any>(`/users/register`, user)
+        return this.http.post<any>(`${API_ENDPOINT}/register`, user)
             .pipe(map(user => {
                 return user;
             }));

@@ -4,6 +4,7 @@ import { AuthenticationService } from './authentication.service';
 import { Discipline } from '../models/discipline';
 import { Status } from '../models/status';
 import { forkJoin, Observable } from 'rxjs';
+import { API_ENDPOINT } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,25 +17,25 @@ export class DataService {
 
   createDiscipline(discipline: Discipline) {
     discipline.username = this._authService.currentUser.username;
-    return this._http.post<any>(`http://localhost:1234/disciplines`, discipline);
+    return this._http.post<any>(`${API_ENDPOINT}/disciplines`, discipline);
   }
 
   getDisciplinesByUsername() {
-    return this._http.get<any>(`http://localhost:1234/disciplines/users/${this._authService.currentUser.username}`);
+    return this._http.get<any>(`${API_ENDPOINT}/disciplines/users/${this._authService.currentUser.username}`);
   }
 
   saveStatus(status: Status) {
     status.username = this._authService.currentUser.username;
-    return this._http.post<any>(`http://localhost:1234/statuses`, status);
+    return this._http.post<any>(`${API_ENDPOINT}/statuses`, status);
   }
 
   getStatusesByUsernameAndDate(date) {
-    return this._http.get<any>(`http://localhost:1234/statuses/users/${this._authService.currentUser.username}/date/${date}`);
+    return this._http.get<any>(`${API_ENDPOINT}/statuses/users/${this._authService.currentUser.username}/date/${date}`);
   }
 
   getProgressByUsernameAndDisciplineId(disciplineId) {
     console.log(disciplineId);
-    return this._http.get<any>(`http://localhost:1234/progresses/users/${this._authService.currentUser.username}/disciplineId/${disciplineId}`);
+    return this._http.get<any>(`${API_ENDPOINT}/progresses/users/${this._authService.currentUser.username}/disciplineId/${disciplineId}`);
   }
 
   /**
@@ -44,7 +45,7 @@ export class DataService {
   getProgresses(disciplines: Array<Discipline>): Observable<any> {
     let observableBatch = [];
     disciplines.forEach((d: Discipline) => {
-      const url = `http://localhost:1234/progresses/users/${this._authService.currentUser.username}/disciplineId/${d.id}`
+      const url = `${API_ENDPOINT}/progresses/users/${this._authService.currentUser.username}/disciplineId/${d.id}`
 
       //console.log(url);
       observableBatch.push(this._http.get(url))

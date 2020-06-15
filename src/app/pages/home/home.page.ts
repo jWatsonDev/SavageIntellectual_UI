@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
     ).subscribe(res => {
       this.disciplines = res[0];
       this.statuses = res[1];
-      console.log(res);
+      // console.log(res);
       this.buildStatusDisciplines();
     });
   }

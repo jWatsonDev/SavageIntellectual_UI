@@ -7,44 +7,51 @@
 <ion-content>
   <form *ngIf="title === 'login'" [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()">
     <ion-item>
-      <ion-label position="fixed">Email</ion-label>
+      <ion-label position="floating">Email</ion-label>
       <ion-input type="text" required formControlName="username"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="fixed">Password</ion-label>
-      <ion-input formControlName="password"></ion-input>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="password" required></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="dark" expand="block">Sign In</ion-button>
+        <ion-button type="submit" color="dark" expand="block" [disabled]="loginForm.invalid">Sign In</ion-button>
         <p>
           <small>
             <a (click)="registerForm()" class="small-text">Register for an Account</a>
           </small>
         </p>
-        <p *ngIf="loginError" style="color: red; text-align: center;">Incorrect username or password. Contact support for assistance.</p>
+        <p *ngIf="loginError" style="color: red; text-align: center;">
+          Incorrect username or password. <br>Contact support for assistance.
+        </p>
       </ion-col>
     </ion-row>
   </form>
 
 
 
-  <form *ngIf="title === 'register'">
+  <form *ngIf="title === 'register'" [formGroup]="registrationForm">
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="email" formControlName="username" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="fixed">Password</ion-label>
-      <ion-input></ion-input>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="password" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Reenter Password</ion-label>
+      <ion-input type="password" formControlName="reenterPassword" required></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="dark" expand="block" (click)="register()">Register</ion-button>
+        <ion-button type="submit" color="dark" expand="block" (click)="register()" [disabled]="!isRegistrationFormValid()">Register</ion-button>
         <p>
           <small>
             <a (click)="title = 'login'" class="small-text">Back to Login</a>

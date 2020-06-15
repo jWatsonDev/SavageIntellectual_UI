@@ -43,9 +43,16 @@ export class DisciplineFormComponent implements OnInit {
       // Create
       this.discipline = this.disciplineForm.value;
     }
-    console.log(this.discipline)
+    // console.log('discipline', this.discipline)
+
+    // save discipline 
     this._dataService.createDiscipline(this.discipline).subscribe(res => {
       console.log(res);
+      // TODO: potentially add toast notification
+      this._modalController.dismiss();
+    }, error => {
+      // TODO: let user know there was an issue saving discipline 
+      console.error('error', error); 
     });
   }
 

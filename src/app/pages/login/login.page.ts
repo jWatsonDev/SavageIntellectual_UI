@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +17,12 @@ export class LoginPage implements OnInit {
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
+  });
+
+  registrationForm = new FormGroup({
+    username: new FormControl('', [Validators.email]),
+    password: new FormControl('', [Validators.minLength(6)]),
+    reenterPassword: new FormControl('', [Validators.minLength(6)])
   });
 
   constructor(
@@ -37,11 +43,17 @@ export class LoginPage implements OnInit {
 
   user: User = new User();
   register() {
-    this.user.username = 'temp';
-    this.user.password = 'temppw';
+    console.log(this.registrationForm.value);
+    this.user.username = this.registrationForm.get('username').value;
+    this.user.password = this.registrationForm.get('password').value;
     this._authService.register(this.user).subscribe(d => {
       console.log('test', d)
     })
+  }
+
+  isRegistrationFormValid(): boolean {
+    return this.registrationForm.valid && 
+      (this.registrationForm.get('reenterPassword').value === this.registrationForm.get('password').value);
   }
 
   registerForm() {

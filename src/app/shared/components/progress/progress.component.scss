@@ -24,6 +24,7 @@
     background: #b2afac;
     text-align: center;
     margin: 2px;
+    cursor: pointer;
 }
 
 .progress-circle .date {
@@ -52,12 +53,12 @@
 }
 
 .inner-progress-wrapper::-webkit-scrollbar {
-	width: 7px;
-	background: var(--ion-color-step-50);
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1); // var(--ion-color-step-50);
 }
 
 .inner-progress-wrapper::-webkit-scrollbar-thumb {
-	background: var(--ion-color-step-50);
+    background: rgba(255, 255, 255, 0.4); // var(--ion-color-step-50);
 }
 
 h3 {

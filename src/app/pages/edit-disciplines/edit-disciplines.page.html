@@ -15,18 +15,22 @@
       </ion-fab-button>
     </ion-fab>
 
-    <ion-list>
+    <ion-list *ngIf="disciplines && disciplines.length; else noDisciplines">
       <ion-item *ngFor="let discipline of disciplines">
-        <ion-icon *ngIf="discipline.category === 'relational'" name="people-outline"></ion-icon>
-        <ion-icon *ngIf="discipline.category === 'personal'" name="person-outline"></ion-icon>
-        <ion-icon *ngIf="discipline.category === 'physical'" name="barbell-outline"></ion-icon>
-        <ion-icon *ngIf="discipline.category === 'professional'" name="briefcase-outline"></ion-icon>
+        <ion-icon *ngIf="discipline.category === 'relational'" class="category" name="people-outline"></ion-icon>
+        <ion-icon *ngIf="discipline.category === 'personal'" class="category" name="person-outline"></ion-icon>
+        <ion-icon *ngIf="discipline.category === 'physical'" class="category" name="barbell-outline"></ion-icon>
+        <ion-icon *ngIf="discipline.category === 'professional'" class="category" name="briefcase-outline"></ion-icon>
         &nbsp;
         <ion-label>{{ discipline.name | uppercase }}</ion-label>
         <ion-button color="danger" (click)="delete(discipline)"><ion-icon name="trash-outline"></ion-icon></ion-button>
         <ion-button color="primary" (click)="edit(discipline)"><ion-icon name="create-outline"></ion-icon></ion-button>
       </ion-item>
     </ion-list>  
+
+    <ng-template #noDisciplines>
+      <p style="padding-left: 10px;">You don't have any disciplines. Add some.</p>
+    </ng-template>
   </div>
 
 </ion-content>

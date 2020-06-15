@@ -4,7 +4,7 @@
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>Savage Intellectual</ion-list-header>
-          <ion-note>Discipline. Growth. Daily.</ion-note>
+          <ion-note><em>Daily, disciplined, growth.</em></ion-note>
           <div >
           <ion-menu-toggle autoHide=false *ngFor="let p of appPages; let i = index">
             <ion-item (click)="menuClicked(p, i);" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="routeUrl === p.url">

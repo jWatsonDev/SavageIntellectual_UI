@@ -6,6 +6,9 @@ export const environment = {
   production: false
 };
 
+// export const API_ENDPOINT = 'http://sitest-env.eba-v232csyd.us-east-1.elasticbeanstalk.com';
+export const API_ENDPOINT = 'http://localhost:5000';
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
